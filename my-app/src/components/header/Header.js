@@ -29,11 +29,18 @@ const Header = () => {
       </nav>
 
       <div className="logo">
-        <Link to="/home">Shop</Link>
+        <Link to="/home">Beauty.bd</Link>
       </div>
 
       <div className="cart">
-        <Link to="/cartpage">🛒 Cart ({totalQuantity})</Link>
+        <Link to="/cartpage">
+          <div className="cart-icon">
+            <i className="bi bi-cart-fill"></i>{" "}
+            {totalQuantity > 0 && (
+              <span className="cart-badge">{totalQuantity}</span>
+            )}
+          </div>
+        </Link>
       </div>
     </header>
   );

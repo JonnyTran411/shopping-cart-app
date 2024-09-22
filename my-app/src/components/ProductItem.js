@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { selectProduct } from "../redux/actions/productActions";
-import "./style/ProductList.css";
+import "./style/ProductItem.css";
 
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -12,11 +12,24 @@ const ProductItem = ({ product }) => {
 
   return (
     <div className="product-item">
-      <img src={product.imageUrl} alt={product.productName} />
-      <h2>{product.productName}</h2>
-      <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-      <button onClick={handleSelectProduct}>View Details</button>
+      <img
+        className="product-image"
+        src={product.imageUrl}
+        alt={product.productName}
+      />
+      <div className="product-details">
+        <h2 className="product-title">{product.productName}</h2>
+        <p className="product-description">{product.description}</p>
+      </div>
+      <div className="product-footer">
+        <p className="product-price">${product.price}</p>
+        <button
+          className="view-details"
+          onClick={() => handleSelectProduct(product)}
+        >
+          Details
+        </button>
+      </div>
     </div>
   );
 };

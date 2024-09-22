@@ -50,28 +50,40 @@ const ProductDetails = () => {
 
   return (
     <div className="product-details">
-      <img src={selectedProduct.imageUrl} alt={selectedProduct.productName} />
-      <h1>{selectedProduct.productName}</h1>
-      <p>{selectedProduct.description}</p>
-      <p>Price: ${totalPrice}</p>
-      <div className="quantity-controls">
-        <button
-          onClick={() => handleQuantityChange(-1)}
-          disabled={quantity === 1}
-        >
-          -
-        </button>
-        <input type="number" value={quantity} readOnly />
-        <button
-          onClick={() => handleQuantityChange(1)}
-          disabled={quantity === 99}
-        >
-          +
+      <div className="product-image-container">
+        <img
+          src={selectedProduct.imageUrl}
+          alt={selectedProduct.productName}
+          className="product-details-image"
+        />
+      </div>
+      <div className="product-info">
+        <h1>{selectedProduct.productName}</h1>
+        <p className="product-description">{selectedProduct.description}</p>
+        <div className="price-quantity">
+          <div className="quantity-controls">
+            <button
+              onClick={() => handleQuantityChange(-1)}
+              disabled={quantity === 1}
+              className="quantity-btn"
+            >
+              -
+            </button>
+            <input type="number" value={quantity} readOnly />
+            <button
+              onClick={() => handleQuantityChange(1)}
+              disabled={quantity === 99}
+              className="quantity-btn"
+            >
+              +
+            </button>
+          </div>
+          <p className="price">${totalPrice}</p>
+        </div>
+        <button className="add-to-cart" onClick={handleAddToCart}>
+          <i className="fas fa-shopping-cart"></i> Add to cart
         </button>
       </div>
-      <button className="add-to-cart" onClick={handleAddToCart}>
-        Add to Cart
-      </button>
     </div>
   );
 };

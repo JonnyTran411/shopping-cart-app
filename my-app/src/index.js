@@ -1,4 +1,5 @@
 // src/index.js
+import "bootstrap-icons/font/bootstrap-icons.css";
 import React from "react";
 import { createRoot } from "react-dom/client"; // Import createRoot từ React 18
 import { Provider } from "react-redux";

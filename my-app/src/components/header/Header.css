@@ -45,17 +45,26 @@
 .cart {
   flex: 1;
   text-align: right;
+  position: relative;
 }
 
-.cart a {
-  text-decoration: none;
-  font-size: 18px;
-  background-color: #10b981;
+.cart-icon {
+  font-size: 24px;
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-badge {
+  background-color: red;
   color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.cart a:hover {
-  background-color: #059669;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -10px;
+  right: -10px;
 }

@@ -42,8 +42,8 @@ const CartItems = () => {
               className="cart-item-image"
             />
             <div className="cart-item-details">
-              <h3>{product.productName}</h3>
-              <p>{product.description}</p>
+              <h3 className="cart-item-title">{product.productName}</h3>
+              <p className="cart-item-description">{product.description}</p>
               <div className="cart-item-controls">
                 <button
                   onClick={() => handleQuantityChange(product, -1)}
@@ -58,16 +58,18 @@ const CartItems = () => {
                 >
                   +
                 </button>
-                <p className="product-total-price">
-                  ${(product.price * product.quantity).toFixed(2)}
-                </p>
               </div>
-              <button
-                className="remove-btn"
-                onClick={() => handleRemove(product)}
-              >
-                🗑 Remove
-              </button>
+              <div className="cart-item-footer">
+                <div className="product-total-price">
+                  ${(product.price * product.quantity).toFixed(2)}
+                </div>
+                <button
+                  className="remove-btn"
+                  onClick={() => handleRemove(product)}
+                >
+                  🗑
+                </button>
+              </div>
             </div>
           </div>
         ))
