@@ -26,6 +26,26 @@
   border-radius: 5px;
 }
 
+.checkout-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .continue-shopping-button {
   background-color: #28a745;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #09f;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

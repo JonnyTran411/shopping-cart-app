@@ -1,5 +1,6 @@
 import {
   ADD_TO_CART,
+  CLEAR_CART,
   REMOVE_FROM_CART,
   UPDATE_QUANTITY,
 } from "../actions/cartActions";
@@ -54,6 +55,11 @@ const cartReducer = (state = initialState, action) => {
             ? { ...item, quantity: action.payload.newQuantity }
             : item
         ),
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
       };
     default:
       return state;

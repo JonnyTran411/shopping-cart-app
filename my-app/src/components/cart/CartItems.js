@@ -17,7 +17,9 @@ const CartItems = () => {
     }
     const newQuantity = product.quantity + amount;
 
-    if (newQuantity >= 1 && newQuantity <= 99) {
+    if (newQuantity === 0) {
+      dispatch(removeFromCart(product));
+    } else if (newQuantity >= 1 && newQuantity <= 99) {
       dispatch(updateQuantity(product.productId, newQuantity));
     }
   };
