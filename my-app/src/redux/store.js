@@ -1,10 +1,17 @@
-import { createStore, applyMiddleware } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
-import rootReducer from "./reducers";
-import rootSaga from "./sagas"; // Import rootSaga
+import cartReducer from "./reducers/cartReducer";
+import productReducer from "./reducers/productReducer";
+import rootSaga from "./sagas";
 
 // Tạo middleware cho saga
 const sagaMiddleware = createSagaMiddleware();
+
+// Kết hợp các reducer
+const rootReducer = combineReducers({
+  productState: productReducer,
+  cartState: cartReducer,
+});
 
 // Tạo store và áp dụng middleware saga
 const store = createStore(

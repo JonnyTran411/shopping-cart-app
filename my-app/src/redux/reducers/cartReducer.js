@@ -1,24 +1,26 @@
-import { ADD_TO_CART } from "../actions/cartActions";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  UPDATE_QUANTITY,
+} from "../actions/cartActions";
 
 const initialState = {
-  cartItems: [],
+  cart: [],
 };
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const { productId, quantity } = action.payload;
-
       // check if item is already in cart
-      const existingItem = state.cartItems.find(
-        (item) => item.productId === productId
+      const existingProduct = state.cart.find(
+        (item) => item.productId === action.payload.productId
       );
 
-      if (existingItem) {
+      if (existingProduct) {
         // if item is already in cart, update quantity
         return {
           ...state,
-          cartItems: state.cartItems.map((item) =>
+          cart: state.cart.map((item) =>
             item.productId === action.payload.productId
               ? { ...item, quantity: item.quantity + action.payload.quantity }
               : item
@@ -28,16 +30,23 @@ const cartReducer = (state = initialState, action) => {
         // if item is not in cart, add item
         return {
           ...state,
-          cartItems: [
-            ...state.cartItems,
-            {
-              productId,
-              quantity,
-            },
-          ],
+          cart: [...state.cart, action.payload],
         };
       }
-
+    case REMOVE_FROM_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.productId !== action.payload),
+      };
+    case UPDATE_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.productId === action.payload.productId
+            ? { ...item, quantity: action.payload.quantity }
+            : item
+        ),
+      };
     default:
       return state;
   }

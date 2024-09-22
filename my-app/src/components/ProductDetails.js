@@ -1,23 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addToCart } from "../redux/actions/cartActions";
+import { selectProduct } from "../redux/actions/productActions";
 import "./style/ProductDetail.css";
 
 const ProductDetails = () => {
-  const selectedProduct = useSelector(
-    (state) => state.productState.selectedProduct
-  );
   const dispatch = useDispatch();
 
-  //state quantity of product
-  const [quantity, setQuantity] = useState(1);
+  const products = useSelector((state) => state.productState.products || []);
+  console.log("Products:", products);
+
+  let selectedProduct = useSelector(
+    (state) => state.productState.selectedProduct
+  );
+  console.log("Selected Product:", selectedProduct);
+
+  useEffect(() => {
+    if (!selectedProduct && products.length > 0) {
+      dispatch(selectProduct(products[0])); // Tự động chọn sản phẩm đầu tiên
+    }
+  }, [selectedProduct, products, dispatch]);
 
   // handle add to cart
   const handleAddToCart = () => {
-    dispatch(addToCart(selectedProduct.id, quantity));
-    toast.success("Added to cart!");
+    dispatch(addToCart(selectedProduct, quantity));
+    toast.success(`${selectedProduct.productName} added to cart!`);
   };
+
+  //state quantity of product
+  const [quantity, setQuantity] = useState(1);
 
   // handle quantity change
   const handleQuantityChange = (amount) => {
@@ -26,11 +38,14 @@ const ProductDetails = () => {
     }
   };
 
-  // if (!selectedProduct) {
-  //   return <div>Please select a product to view details.</div>;
-  // }
+  const totalPrice =
+    selectedProduct && selectedProduct.price
+      ? (selectedProduct.price * quantity).toFixed(2)
+      : 0;
 
-  const totalPrice = (selectedProduct.price * quantity).toFixed(2);
+  if (!selectedProduct || !selectedProduct.price) {
+    return <div>Loading product details...</div>;
+  }
 
   return (
     <div className="product-details">
@@ -53,7 +68,9 @@ const ProductDetails = () => {
           +
         </button>
       </div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <button className="add-to-cart" onClick={handleAddToCart}>
+        Add to Cart
+      </button>
     </div>
   );
 };
