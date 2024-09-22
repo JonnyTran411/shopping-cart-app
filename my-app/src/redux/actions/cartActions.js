@@ -7,6 +7,7 @@ export const addToCart = (product, quantity) => {
   return {
     type: ADD_TO_CART,
     payload: {
+      id: product.productId,
       ...product,
       quantity,
     },
@@ -14,20 +15,20 @@ export const addToCart = (product, quantity) => {
 };
 
 // Action remove from cart
-export const removeFromCart = (productId) => {
+export const removeFromCart = (product) => {
   return {
     type: REMOVE_FROM_CART,
-    payload: productId,
+    payload: product,
   };
 };
 
 //action  update quantity
-export const updateQuantity = (productId, quantity) => {
+export const updateQuantity = (productId, newQuantity) => {
   return {
     type: UPDATE_QUANTITY,
     payload: {
       productId,
-      quantity,
+      newQuantity,
     },
   };
 };

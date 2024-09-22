@@ -1,0 +1,16 @@
+.cart-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.cart-items-section {
+  width: 65%;
+  padding-right: 20px;
+}
+
+.checkout-section {
+  width: 30%;
+  padding-left: 20px;
+  border-left: 1px solid #ddd;
+}

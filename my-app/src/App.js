@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/header/Header";
+import CartPage from "./pages/CartPage";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Reviews from "./pages/Reviews";
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/cartpage" element={<CartPage />} />
       </Routes>
     </Router>
   );

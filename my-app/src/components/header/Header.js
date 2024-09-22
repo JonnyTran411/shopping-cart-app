@@ -33,7 +33,7 @@ const Header = () => {
       </div>
 
       <div className="cart">
-        <Link to="/cart">🛒 Cart ({totalQuantity})</Link>
+        <Link to="/cartpage">🛒 Cart ({totalQuantity})</Link>
       </div>
     </header>
   );

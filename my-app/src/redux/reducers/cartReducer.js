@@ -36,14 +36,22 @@ const cartReducer = (state = initialState, action) => {
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter((item) => item.productId !== action.payload),
+        cart: state.cart.filter(
+          (item) => item.productId !== action.payload.productId
+        ),
       };
     case UPDATE_QUANTITY:
+      console.log(
+        "Updating quantity for product:",
+        action.payload.productId,
+        "to:",
+        action.payload.newQuantity
+      );
       return {
         ...state,
         cart: state.cart.map((item) =>
           item.productId === action.payload.productId
-            ? { ...item, quantity: action.payload.quantity }
+            ? { ...item, quantity: action.payload.newQuantity }
             : item
         ),
       };

@@ -11,7 +11,7 @@ const ProductDetails = () => {
   const products = useSelector((state) => state.productState.products || []);
   console.log("Products:", products);
 
-  let selectedProduct = useSelector(
+  const selectedProduct = useSelector(
     (state) => state.productState.selectedProduct
   );
   console.log("Selected Product:", selectedProduct);
@@ -24,6 +24,7 @@ const ProductDetails = () => {
 
   // handle add to cart
   const handleAddToCart = () => {
+    console.log("Adding product to cart:", selectedProduct);
     dispatch(addToCart(selectedProduct, quantity));
     toast.success(`${selectedProduct.productName} added to cart!`);
   };
